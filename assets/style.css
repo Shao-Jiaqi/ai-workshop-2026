@@ -1,0 +1,402 @@
+/* ==========================================================================
+   AI Tools for Business Research — NUS Business School, 4–5 August 2026
+
+   Two worlds on one page:
+     the paper world  — warm off-white, humanist serif, the prose of research
+     the agent world  — a cool inset, monospace, the sentence you actually type
+   Everything else stays quiet so the prompt block is the thing you remember.
+   ========================================================================== */
+
+:root {
+  /* paper world */
+  --paper:      #FCFBF9;
+  --paper-deep: #F5F2ED;
+  --ink:        #14191F;
+  --ink-soft:   #4E555E;
+  --rule:       #DFD9D0;
+
+  /* institution */
+  --blue:       #003D7C;
+  --blue-lift:  #12599F;
+  --orange:     #EF7C00;
+
+  /* agent world */
+  --wash:       #EDF1F6;
+  --wash-rule:  #C9D6E4;
+  --mono-ink:   #16324F;
+
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua",
+           "URW Palladio L", Georgia, serif;
+  --sans:  -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+           "Helvetica Neue", Arial, sans-serif;
+  --mono:  ui-monospace, "SF Mono", SFMono-Regular, Menlo, "Cascadia Mono",
+           Consolas, "Liberation Mono", monospace;
+
+  --shell:   62rem;
+  --measure: 38rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper:      #101820;
+    --paper-deep: #16202B;
+    --ink:        #E9E6E0;
+    --ink-soft:   #A2AEBB;
+    --rule:       #2C3944;
+    --blue:       #8DB4DF;
+    --blue-lift:  #B4D0F0;
+    --orange:     #F79A3A;
+    --wash:       #17222E;
+    --wash-rule:  #2E4257;
+    --mono-ink:   #C6DCF2;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 1.0625rem;
+  line-height: 1.68;
+  text-rendering: optimizeLegibility;
+}
+
+/* --- shell ------------------------------------------------------------ */
+
+.shell { max-width: var(--shell); margin: 0 auto; padding: 0 1.5rem; }
+.measure { max-width: var(--measure); }
+
+.skip {
+  position: absolute; left: -9999px;
+  background: var(--blue); color: #fff;
+  padding: .6rem 1rem; z-index: 10;
+}
+.skip:focus { left: 1rem; top: 1rem; }
+
+:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: 3px;
+}
+
+/* --- masthead --------------------------------------------------------- */
+
+.masthead {
+  border-bottom: 1px solid var(--rule);
+  padding: 1.1rem 0;
+}
+.masthead .shell {
+  display: flex; flex-wrap: wrap; gap: .75rem 1.5rem;
+  align-items: baseline; justify-content: space-between;
+}
+.crest {
+  font-family: var(--sans);
+  font-size: .68rem; font-weight: 600;
+  letter-spacing: .16em; text-transform: uppercase;
+  color: var(--blue);
+}
+.crest span { color: var(--ink-soft); font-weight: 400; }
+
+.nav { font-family: var(--sans); font-size: .8rem; letter-spacing: .04em; }
+.nav a { margin-left: 1.4rem; }
+.nav a:first-child { margin-left: 0; }
+.nav a[aria-current="page"] {
+  color: var(--ink);
+  text-decoration-color: var(--orange);
+  text-underline-offset: 5px;
+}
+
+/* --- links ------------------------------------------------------------ */
+
+a { color: var(--blue); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { color: var(--blue-lift); text-decoration-color: var(--orange); }
+
+/* --- hero ------------------------------------------------------------- */
+
+.hero { padding: 4.5rem 0 3.5rem; }
+
+.eyebrow {
+  font-family: var(--sans);
+  font-size: .72rem; font-weight: 600;
+  letter-spacing: .15em; text-transform: uppercase;
+  color: var(--ink-soft);
+  margin: 0 0 1.5rem;
+}
+.eyebrow b { color: var(--orange); font-weight: 600; }
+
+.hero h1 {
+  font-size: clamp(2.7rem, 7.5vw, 4.6rem);
+  line-height: .98;
+  font-weight: 400;
+  letter-spacing: -.02em;
+  margin: 0 0 1.4rem;
+  max-width: 14ch;
+}
+.hero h1 em { font-style: italic; color: var(--blue); }
+
+.standfirst {
+  font-size: 1.2rem;
+  color: var(--ink-soft);
+  max-width: 34rem;
+  margin: 0 0 .6rem;
+}
+
+.facts {
+  font-family: var(--sans);
+  font-size: .82rem;
+  letter-spacing: .02em;
+  color: var(--ink-soft);
+  margin: 0 0 2.75rem;
+}
+.facts strong { color: var(--ink); font-weight: 600; }
+
+/* --- the signature: a sentence you type ------------------------------- */
+
+.prompt {
+  margin: 0 0 1.25rem;
+  background: var(--wash);
+  border-left: 3px solid var(--orange);
+  padding: 1.15rem 1.35rem;
+  max-width: 44rem;
+}
+.prompt pre {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: .875rem;
+  line-height: 1.65;
+  color: var(--mono-ink);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.prompt .caret { color: var(--orange); font-weight: 700; user-select: none; }
+.prompt figcaption {
+  margin-top: .85rem;
+  padding-top: .7rem;
+  border-top: 1px solid var(--wash-rule);
+  font-family: var(--sans);
+  font-size: .8rem;
+  color: var(--ink-soft);
+}
+.prompt--bare { border-left-color: var(--wash-rule); }
+
+/* inline code belongs to the agent world too — same wash, quieter */
+code {
+  font-family: var(--mono);
+  font-size: .855em;
+  background: var(--wash);
+  color: var(--mono-ink);
+  padding: .12em .38em;
+}
+.prompt code, pre code { background: none; padding: 0; font-size: inherit; color: inherit; }
+a code { color: inherit; }
+
+/* --- sections --------------------------------------------------------- */
+
+.band { padding: 3.25rem 0; border-top: 1px solid var(--rule); }
+.band--sunk { background: var(--paper-deep); }
+
+.band h2 {
+  font-size: clamp(1.45rem, 3vw, 1.95rem);
+  font-weight: 400;
+  letter-spacing: -.01em;
+  line-height: 1.2;
+  margin: 0 0 1.25rem;
+}
+.band h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 2rem 0 .4rem;
+}
+.band p { margin: 0 0 1rem; max-width: var(--measure); }
+.lede { font-size: 1.1rem; }
+
+/* --- outcome list ----------------------------------------------------- */
+
+.outcomes { list-style: none; margin: 1.5rem 0 0; padding: 0; }
+.outcomes li {
+  border-top: 1px solid var(--rule);
+  padding: 1.05rem 0;
+  max-width: 44rem;
+}
+.outcomes b {
+  display: block;
+  font-family: var(--sans);
+  font-size: .74rem; font-weight: 700;
+  letter-spacing: .13em; text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: .3rem;
+}
+
+/* --- plain bullet list ------------------------------------------------ */
+
+.plain { max-width: var(--measure); padding-left: 1.1rem; margin: 0 0 1rem; }
+.plain li { margin-bottom: .5rem; }
+.plain li::marker { color: var(--orange); }
+
+/* --- the two days ----------------------------------------------------- */
+
+.dayhead {
+  font-family: var(--sans);
+  font-size: .74rem; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--blue);
+  margin: 2.5rem 0 0;
+  padding-bottom: .5rem;
+  border-bottom: 2px solid var(--blue);
+}
+.dayhead:first-of-type { margin-top: 1.5rem; }
+.dayhead span { color: var(--ink-soft); font-weight: 400; letter-spacing: .06em; }
+
+.timeline { list-style: none; margin: 0; padding: 0; }
+.timeline > li {
+  display: grid;
+  grid-template-columns: 8.5rem 1fr;
+  gap: 0 1.75rem;
+  padding: 1.35rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+.tl-meta { font-family: var(--sans); font-size: .78rem; line-height: 1.5; }
+.tl-time {
+  display: block;
+  font-size: 1rem; font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+.tl-dur { display: block; color: var(--ink-soft); }
+.tl-who { display: block; color: var(--blue); }
+
+.tl-body { border-left: 1px solid var(--rule); padding-left: 1.75rem; }
+.tl-body h4 {
+  font-size: 1.08rem; font-weight: 600;
+  margin: 0 0 .35rem;
+}
+.tl-body p { margin: 0; color: var(--ink-soft); font-size: .98rem; max-width: 34rem; }
+.tl-tag {
+  display: inline-block;
+  margin-top: .55rem;
+  font-family: var(--sans);
+  font-size: .7rem; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--orange);
+}
+.timeline > li.is-break { color: var(--ink-soft); }
+.is-break .tl-body h4 { font-weight: 400; font-style: italic; color: var(--ink-soft); }
+
+/* --- people ----------------------------------------------------------- */
+
+.people { display: grid; gap: 2rem; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 1.5rem; }
+.person h3 { margin-top: 0; }
+.person .role {
+  font-family: var(--sans);
+  font-size: .74rem; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--orange); font-weight: 700;
+  margin: 0 0 .3rem;
+}
+.person p { font-size: .98rem; }
+
+.coords {
+  margin-top: 2.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--rule);
+  font-size: .98rem;
+  color: var(--ink-soft);
+}
+
+/* --- key/value block -------------------------------------------------- */
+
+.kv { margin: 1.5rem 0 0; display: grid; grid-template-columns: 9rem 1fr; gap: 0; max-width: 44rem; }
+.kv dt {
+  font-family: var(--sans);
+  font-size: .74rem; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--ink-soft);
+  padding: .85rem 0;
+  border-top: 1px solid var(--rule);
+}
+.kv dd {
+  margin: 0;
+  padding: .85rem 0;
+  border-top: 1px solid var(--rule);
+}
+
+/* --- tables ----------------------------------------------------------- */
+
+.table-wrap { overflow-x: auto; margin: 1.5rem 0 0; }
+table { border-collapse: collapse; width: 100%; min-width: 34rem; font-size: .95rem; }
+th, td { text-align: left; padding: .8rem 1rem .8rem 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+thead th {
+  font-family: var(--sans);
+  font-size: .72rem; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--ink-soft);
+  border-bottom: 2px solid var(--ink);
+  white-space: nowrap;
+}
+td.num { font-variant-numeric: tabular-nums; color: var(--ink-soft); white-space: nowrap; }
+td .who { display: block; font-family: var(--sans); font-size: .8rem; color: var(--ink-soft); }
+
+/* --- notice ----------------------------------------------------------- */
+
+.notice {
+  border: 1px solid var(--orange);
+  border-left-width: 3px;
+  padding: 1.1rem 1.35rem;
+  max-width: 44rem;
+  margin: 1.75rem 0 0;
+  font-size: .96rem;
+}
+.notice p { margin: 0; max-width: none; }
+.notice b { color: var(--orange); }
+
+/* --- practice blocks -------------------------------------------------- */
+
+.practice { border-top: 1px solid var(--rule); padding-top: 1.6rem; margin-top: 2rem; }
+.practice > h3 { margin-top: 0; font-size: 1.25rem; }
+.practice .meta {
+  font-family: var(--sans);
+  font-size: .74rem; font-weight: 600;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--ink-soft);
+  margin: 0 0 .9rem;
+}
+.practice .meta b { color: var(--orange); }
+
+/* --- footer ----------------------------------------------------------- */
+
+.foot {
+  border-top: 1px solid var(--rule);
+  margin-top: 3rem;
+  padding: 2.25rem 0 3.5rem;
+  font-family: var(--sans);
+  font-size: .8rem;
+  color: var(--ink-soft);
+}
+.foot p { margin: 0 0 .4rem; max-width: 44rem; }
+
+/* --- responsive ------------------------------------------------------- */
+
+@media (max-width: 44rem) {
+  .timeline > li { grid-template-columns: 1fr; gap: .55rem; }
+  .tl-meta { display: flex; gap: .9rem; align-items: baseline; }
+  .tl-time { font-size: .9rem; }
+  .tl-body { border-left: 0; padding-left: 0; }
+  .people { grid-template-columns: 1fr; gap: 1.5rem; }
+  .kv { grid-template-columns: 1fr; }
+  .kv dt { padding-bottom: 0; border-top: 1px solid var(--rule); }
+  .kv dd { padding-top: .2rem; border-top: 0; }
+  .hero { padding: 3rem 0 2.5rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+@media print {
+  .nav, .skip { display: none; }
+  body { background: #fff; color: #000; }
+  .band, .hero { padding: 1rem 0; }
+}

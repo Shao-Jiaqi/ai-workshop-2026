@@ -1,0 +1,17 @@
+# macOS
+.DS_Store
+
+# LaTeX build artifacts
+*.aux
+*.log
+*.nav
+*.snm
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
+# Participant work — never commit
+my_slides/
+my_wiki/

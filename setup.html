@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Setup — AI Tools for Business Research, NUS Business School</title>
+<meta name="description" content="Do this before Tuesday 4 August: two accounts, three installs, one check that it works.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="shell">
+    <div class="crest">NUS Business School <span>· Dean's PhD and Research Office</span></div>
+    <nav class="nav" aria-label="Sections">
+      <a href="index.html">Overview</a>
+      <a href="index.html#days">The two days</a>
+      <a href="materials.html">Materials</a>
+      <a href="setup.html" aria-current="page">Setup</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero">
+    <div class="shell">
+      <p class="eyebrow">Before you arrive <b>·</b> 30–45 minutes</p>
+      <h1>Setup</h1>
+      <p class="standfirst">Two accounts, three installs, one check that it works. Please finish
+        this before 09:00 on Tuesday 4 August.</p>
+      <p class="facts">The two days are compressed. We verify your environment together in
+        Session&nbsp;1B rather than building it from scratch — and a room full of people installing
+        software costs everyone an hour.</p>
+      <div class="notice">
+        <p><b>If something refuses to install, come anyway.</b> Arrive fifteen minutes early on day
+          one and we will sort it out. Do not skip the workshop over a broken install.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="accounts">
+    <div class="shell">
+      <h2>1 · Two accounts</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th scope="col">Account</th><th scope="col">Why</th><th scope="col">Where</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Claude Code</th>
+              <td>The tool the whole workshop runs on</td>
+              <td><a href="https://www.anthropic.com/claude-code">anthropic.com/claude-code</a></td>
+            </tr>
+            <tr>
+              <th scope="row">GitHub</th>
+              <td>Version control, and how you get these materials</td>
+              <td><a href="https://github.com">github.com</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>A Claude Pro subscription is enough. If you would rather pay per use, an API key with a
+        small amount of credit also works.</p>
+    </div>
+  </section>
+
+  <section class="band band--sunk" id="installs">
+    <div class="shell">
+      <h2>2 · Three installs</h2>
+
+      <h3>A terminal</h3>
+      <ul class="plain">
+        <li><strong>macOS</strong> — Terminal.app is already there. Press ⌘-Space and type
+          "Terminal".</li>
+        <li><strong>Windows</strong> — install WSL, the Windows Subsystem for Linux. Open
+          PowerShell as Administrator, run <code>wsl --install</code>, then restart. Everything in
+          the workshop happens inside the Ubuntu window it gives you.</li>
+      </ul>
+
+      <h3>Python</h3>
+      <ul class="plain">
+        <li><strong>macOS and Linux</strong> — check with <code>python3 --version</code>. If it
+          prints 3.10 or higher you are done; otherwise install from
+          <a href="https://www.python.org/downloads/">python.org</a>.</li>
+        <li><strong>Windows, inside WSL</strong> —
+          <code>sudo apt update &amp;&amp; sudo apt install python3 python3-pip</code>.</li>
+      </ul>
+
+      <h3>Claude Code</h3>
+      <figure class="prompt prompt--bare">
+<pre><span class="caret">$</span> npm install -g @anthropic-ai/claude-code</pre>
+        <figcaption>No <code>npm</code>? Install Node.js first — the LTS build from
+          <a href="https://nodejs.org">nodejs.org</a>. Then run <code>claude</code> once and follow
+          the login prompt.</figcaption>
+      </figure>
+
+      <h3>Obsidian, for Session 3A</h3>
+      <p>Free, no account needed: <a href="https://obsidian.md">obsidian.md</a>. Just install it —
+        we create the vault together in class.</p>
+    </div>
+  </section>
+
+  <section class="band" id="verify">
+    <div class="shell">
+      <h2>3 · Check it works</h2>
+      <p>Make a scratch folder and start the agent:</p>
+      <figure class="prompt prompt--bare">
+<pre><span class="caret">$</span> mkdir ~/workshop-test &amp;&amp; cd ~/workshop-test
+<span class="caret">$</span> claude</pre>
+      </figure>
+      <p>At the prompt, type:</p>
+      <figure class="prompt">
+<pre><span class="caret">&gt;</span> Create a file called hello.py that prints "ready for the workshop",
+  then run it.</pre>
+        <figcaption>Claude asks permission, writes the file, runs it, and prints the message.
+          If that happened, you are set up correctly — quit with <code>/exit</code>.</figcaption>
+      </figure>
+      <p>Two commands are worth knowing before you arrive: <code>/help</code> lists everything you
+        can type, and <code>/exit</code> quits.</p>
+    </div>
+  </section>
+
+  <section class="band band--sunk" id="bring">
+    <div class="shell">
+      <h2>4 · Bring one more thing</h2>
+      <p>Bring <strong>a small piece of your own data, or one research chore you would like to
+        automate.</strong> A CSV, a folder of PDFs, a script you keep re-running by hand. The
+        practices work far better on a problem you actually care about, and part of each day is
+        deliberately left open for your own material.</p>
+    </div>
+  </section>
+
+  <section class="band" id="trouble">
+    <div class="shell">
+      <h2>Trouble</h2>
+      <dl class="kv">
+        <dt>command not found: claude</dt>
+        <dd>The npm global bin folder is not on your <code>PATH</code>. Run
+          <code>npm config get prefix</code>, then add that folder's <code>bin</code> to your
+          <code>PATH</code>.</dd>
+        <dt>command not found: npm</dt>
+        <dd>Node.js is not installed. Get the LTS build from
+          <a href="https://nodejs.org">nodejs.org</a>.</dd>
+        <dt>Windows, nothing works</dt>
+        <dd>You are probably in PowerShell rather than the WSL Ubuntu window. Type
+          <code>wsl</code> first.</dd>
+        <dt>Still stuck</dt>
+        <dd>Email <a href="mailto:jiaqishao@u.nus.edu">jiaqishao@u.nus.edu</a> with the exact error
+          text, or arrive fifteen minutes early on day one.</dd>
+      </dl>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="shell">
+    <p><strong>AI Tools for Business Research</strong> — NUS Business School,
+      Dean's PhD and Research Office, 4–5 August 2026.</p>
+    <p>The practice manuscript is unpublished and is handed out in the room, not distributed here.</p>
+  </div>
+</footer>
+
+</body>
+</html>

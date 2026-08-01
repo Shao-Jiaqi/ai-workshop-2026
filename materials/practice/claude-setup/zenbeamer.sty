@@ -1,0 +1,167 @@
+% ======================================================================
+%  zenbeamer.sty — Eastern-Zen Beamer theme for
+%  "AI Tools for Business Research" (NUS Business School Ph.D. Workshop)
+%
+%  Reusable across ALL sessions. In each session file:
+%     \documentclass[aspectratio=169,10pt]{beamer}
+%     \usepackage{zenbeamer}
+%     \renewcommand{\zensession}{Session Two}
+%     \renewcommand{\zentitletext}{...}   \renewcommand{\zensubtitle}{...}
+%     \renewcommand{\zenpresenter}{Jiaqi Shao \textperiodcentered\ NUS Business School}
+%     \renewcommand{\zenfootsession}{Session 2 \textperiodcentered\ Getting Started}
+%
+%  Design: sumi ink on rice paper, vermillion seal accents, generous
+%  negative space, a hand-brushed enso (笔触圆环, homage to Sugimoto's
+%  "Brush Impression"), official NUS crest on every page.
+%  Compile with XeLaTeX (twice — the crest uses remember-picture overlay).
+% ======================================================================
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{zenbeamer}[2026/07/17 Eastern-Zen beamer theme]
+
+\RequirePackage{fontspec}
+\RequirePackage{graphicx}
+\RequirePackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,decorations.pathmorphing}
+
+\setbeamertemplate{navigation symbols}{}
+
+% ---- Fonts: calligraphic serif (West) + humanist sans ---------------
+\setmainfont{Palatino}
+\newfontfamily\zsans{Optima}
+
+% ---- Palette: rice paper · sumi ink · vermillion seal ---------------
+\definecolor{paper}{HTML}{F2ECDD}
+\definecolor{ink}{HTML}{2A2622}
+\definecolor{inksoft}{HTML}{6E665A}
+\definecolor{seal}{HTML}{B2402F}
+\definecolor{stone}{HTML}{A79D8C}
+
+\setbeamercolor{background canvas}{bg=paper}
+\setbeamercolor{normal text}{fg=ink}
+\setbeamercolor{frametitle}{fg=ink}
+\setbeamercolor{structure}{fg=seal}
+\setbeamerfont{frametitle}{series=\bfseries,size=\Large}
+\setbeamertemplate{itemize item}{\color{seal}\raisebox{0.12em}{\rule{0.42em}{0.42em}}}
+\setbeamertemplate{itemize subitem}{\color{stone}\textendash}
+
+% ---- Reusable per-course / per-session labels -----------------------
+\newcommand{\zencrestpath}{assets/nus_crest.pdf}
+\newcommand{\zenfootcourse}{AI Tools for Business Research}
+\newcommand{\zenfootsession}{Session 1 \textperiodcentered\ A Short History}
+\newcommand{\zensession}{Session One}
+\newcommand{\zentitletext}{Title Goes Here}
+\newcommand{\zensubtitle}{}
+\newcommand{\zenpresenter}{Presenter \textperiodcentered\ NUS Business School}
+
+% ======================================================================
+%  ENSO (笔触圆環) — hand-brushed ink circle, homage to Sugimoto's
+%  "Brush Impression". Pure TikZ, no external asset. Variable stroke
+%  width (brush touch-down → swell → tapering flying-white tail),
+%  organic radius wobble, dry-brush breaks.
+%
+%  To use a licensed image instead, redefine:
+%     \renewcommand{\zenenso}[1]{\includegraphics[width=#1 cm]{assets/enso.png}}
+% ======================================================================
+\newcommand{\zenenso}[1]{%
+  \begin{scope}
+    \pgfmathsetmacro{\R}{#1}
+    \pgfmathsetmacro{\astart}{128}
+    \pgfmathsetmacro{\asweep}{306}
+    % --- brush touch-down (heavy, wet start) ---
+    \fill[ink] (\astart:\R) circle (3.8pt);
+    % --- black brush band: swell then taper, rough organic edge ---
+    \foreach \i in {0,...,89}{%
+      \pgfmathsetmacro{\t}{\i/89}%
+      \pgfmathsetmacro{\tn}{(\i+1)/89}%
+      \pgfmathsetmacro{\a}{\astart+\t*\asweep}%
+      \pgfmathsetmacro{\an}{\astart+\tn*\asweep}%
+      \pgfmathsetmacro{\w}{16*(sin(180*\t))^0.68*(1-0.42*\t)+1.1}%
+      \pgfmathsetmacro{\rr}{\R+0.055*sin(3*\a+20)+0.03*sin(8*\a)}%
+      \draw[ink,line width=\w pt,line cap=round] (\a:\rr) arc (\a:\an:\rr);%
+    }%
+    % --- flying white (飞白): thin paper-colour streaks running ALONG
+    %     the stroke (bristle gaps), irregular offsets/lengths so they
+    %     read as dry brush, not a grid. Concentrated in the dry tail. ---
+    \foreach \k in {0,...,13}{%
+      \pgfmathsetmacro{\off}{-0.215+0.032*\k+0.018*sin(63*\k+17)}%
+      \pgfmathsetmacro{\b}{\astart+(0.27+0.03*sin(50*\k))*\asweep+2.2*\k}%
+      \pgfmathsetmacro{\e}{\astart+\asweep-3-abs(sin(78*\k))*0.14*\asweep}%
+      \pgfmathsetmacro{\lw}{0.5+0.28*abs(sin(41*\k+9))}%
+      \draw[paper,line width=\lw pt,line cap=round]
+        (\b:\R+\off) arc (\b:\e:\R+\off);%
+    }%
+    % a few short bristle nicks in the wet-to-dry shoulder
+    \foreach \k in {0,...,5}{%
+      \pgfmathsetmacro{\off}{-0.12+0.045*\k}%
+      \pgfmathsetmacro{\b}{\astart+(0.16+0.05*\k)*\asweep}%
+      \draw[paper,line width=0.5pt,line cap=round]
+        (\b:\R+\off) arc (\b:\b+9+6*\k:\R+\off);%
+    }%
+    % --- ink flecks flicked off the tail (splatter) ---
+    \fill[ink,opacity=0.55] (\astart+\asweep+4:\R-0.13) circle (0.7pt);
+    \fill[ink,opacity=0.42] (\astart+\asweep+11:\R+0.05) circle (0.5pt);
+    \fill[ink,opacity=0.30] (\astart+\asweep+7:\R+0.20) circle (0.4pt);
+  \end{scope}
+}
+
+% ---- Stepping-stone timeline node: \zenstone{x}{year}{label} --------
+\newcommand{\zenstone}[3]{%
+  \fill[ink] (#1,0) circle (3.2pt);
+  \draw[seal,line width=0.8pt] (#1,0) circle (6.5pt);
+  \node[above=8pt,font=\normalsize,text=ink] at (#1,0) {#2};
+  \node[below=8pt,font=\footnotesize,text=inksoft,align=center,text width=2.3cm] at (#1,0) {#3};%
+}
+
+% ---- Frame title: small seal square + ink title (cleared below header)
+\setbeamertemplate{frametitle}{%
+  \vspace{2.0em}%
+  {\color{seal}\raisebox{0.12em}{\rule{0.55em}{0.55em}}}~%
+  {\usebeamerfont{frametitle}\color{ink}\insertframetitle}\par
+  \vspace{2pt}{\color{stone}\rule{0.34\textwidth}{0.4pt}}\par\vspace{-0.2em}%
+}
+
+% ---- Footline: airy ink + seal dot ----------------------------------
+\setbeamertemplate{footline}{%
+  \leavevmode\hbox to \paperwidth{%
+    \hskip1.5em{\color{inksoft}\zsans\scriptsize\zenfootsession}%
+    \hfil{\color{seal}\scriptsize\textbullet}~{\color{ink}\zsans\scriptsize\insertframenumber}\hskip1.5em}%
+  \vskip6pt%
+}
+
+% ---- Running header on EVERY page: course title (L) + NUS crest and
+%      NUS Business School lockup (R). Drawn as an overlay so it also
+%      appears on [plain] title frames. -------------------------------
+\newcommand{\zenbizlogopath}{assets/nusbiz_logo.pdf}
+\setbeamertemplate{background}{%
+  \begin{tikzpicture}[remember picture,overlay]
+    % course title, top-left
+    \node[anchor=west,inner sep=0,text=inksoft,font=\zsans\scriptsize]
+      at ([xshift=0.55cm,yshift=-0.55cm]current page.north west)
+      {\addfontfeatures{LetterSpace=11.0}\MakeUppercase{AI Tools for Business Research}};
+    % logo lockup, top-right (crest + NUS Business School wordmark, centred)
+    \coordinate (zenhc) at ([xshift=-0.55cm,yshift=-0.66cm]current page.north east);
+    \node[anchor=east,inner sep=0] (zenbiz) at (zenhc)
+      {\includegraphics[height=0.50cm]{\zenbizlogopath}};
+    \node[anchor=east,inner sep=0] at ([xshift=-0.20cm]zenbiz.west)
+      {\includegraphics[height=0.86cm]{\zencrestpath}};
+  \end{tikzpicture}%
+}
+
+% ---- Reusable title-slide body (put inside \begin{frame}[plain]) -----
+\newcommand{\zentitlecontent}{%
+  \begin{columns}[T]
+    \column{0.60\textwidth}
+      \vspace{3.4em}
+      {\color{inksoft}\zsans\footnotesize\addfontfeatures{LetterSpace=18.0}\MakeUppercase{\zensession}}\\[1.7em]
+      {\color{ink}\fontsize{27}{31}\selectfont \zentitletext}\\[0.9em]
+      {\color{inksoft}\itshape\normalsize \zensubtitle}\\[2.6em]
+      {\color{ink} \zenpresenter}
+    \column{0.36\textwidth}
+      \vspace{4.0em}
+      \begin{center}
+        \begin{tikzpicture}\zenenso{1.78}\end{tikzpicture}
+      \end{center}
+  \end{columns}%
+}
+
+\endinput
