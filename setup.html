@@ -4,22 +4,34 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Setup — AI Tools for Business Research, NUS Business School</title>
-<meta name="description" content="Do this before Tuesday 4 August: two accounts, three installs, one check that it works.">
+<meta name="description" content="Two accounts, three installs, one check that it works — the environment the five sessions are built on.">
+<script>
+try { var t = localStorage.getItem('ink');
+      if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+</script>
 <link rel="stylesheet" href="assets/style.css">
+<script src="assets/site.js" defer></script>
 </head>
 <body>
 
 <a class="skip" href="#main">Skip to content</a>
+<div class="progress" aria-hidden="true"><i></i></div>
 
 <header class="masthead">
   <div class="shell">
-    <div class="crest">NUS Business School <span>· Dean's PhD and Research Office</span></div>
-    <nav class="nav" aria-label="Sections">
-      <a href="index.html">Overview</a>
-      <a href="index.html#days">The two days</a>
-      <a href="materials.html">Materials</a>
-      <a href="setup.html" aria-current="page">Setup</a>
-    </nav>
+    <a class="lockup" href="index.html" aria-label="NUS Business School — AI Tools for Business Research">
+      <img class="lockup-crest" src="assets/nus_crest.svg" alt="" width="71" height="90">
+      <img class="lockup-word" src="assets/nusbiz_logo.svg" alt="NUS Business School" width="170" height="82">
+    </a>
+    <div class="mast-right">
+      <nav class="nav" aria-label="Sections">
+        <a href="index.html">Overview</a>
+        <a href="index.html#days">The five sessions</a>
+        <a href="materials.html">Materials</a>
+        <a href="setup.html" aria-current="page">Setup</a>
+      </nav>
+      <button type="button" class="inktoggle" hidden>Dark</button>
+    </div>
   </div>
 </header>
 
@@ -27,21 +39,22 @@
 
   <section class="hero">
     <div class="shell">
-      <p class="eyebrow">Before you arrive <b>·</b> 30–45 minutes</p>
+      <p class="eyebrow">Do this first <b>·</b> 30–45 minutes</p>
       <h1>Setup</h1>
-      <p class="standfirst">Two accounts, three installs, one check that it works. Please finish
-        this before 09:00 on Tuesday 4 August.</p>
-      <p class="facts">The two days are compressed. We verify your environment together in
-        Session&nbsp;1B rather than building it from scratch — and a room full of people installing
-        software costs everyone an hour.</p>
+      <p class="standfirst">Two accounts, three installs, one check that it works. This is the
+        environment all five sessions are built on.</p>
+      <p class="facts">Participants finished this before day one, so that no teaching hour was
+        lost to installing software. Working through the decks on your own? Same advice — do it
+        before Session&nbsp;1B.</p>
       <div class="notice">
-        <p><b>If something refuses to install, come anyway.</b> Arrive fifteen minutes early on day
-          one and we will sort it out. Do not skip the workshop over a broken install.</p>
+        <p><b>If something refuses to install, keep going anyway.</b> Sessions 1A and 2 are
+          followable without a working install; come back to this page before Session&nbsp;4,
+          which needs one.</p>
       </div>
     </div>
   </section>
 
-  <section class="band" id="accounts">
+  <section class="band reveal" id="accounts">
     <div class="shell">
       <h2>1 · Two accounts</h2>
       <div class="table-wrap">
@@ -68,7 +81,7 @@
     </div>
   </section>
 
-  <section class="band band--sunk" id="installs">
+  <section class="band band--sunk reveal" id="installs">
     <div class="shell">
       <h2>2 · Three installs</h2>
 
@@ -98,13 +111,13 @@
           the login prompt.</figcaption>
       </figure>
 
-      <h3>Obsidian, for Session 3A</h3>
+      <h3>Obsidian, for Session 3</h3>
       <p>Free, no account needed: <a href="https://obsidian.md">obsidian.md</a>. Just install it —
         we create the vault together in class.</p>
     </div>
   </section>
 
-  <section class="band" id="verify">
+  <section class="band reveal" id="verify">
     <div class="shell">
       <h2>3 · Check it works</h2>
       <p>Make a scratch folder and start the agent:</p>
@@ -124,17 +137,17 @@
     </div>
   </section>
 
-  <section class="band band--sunk" id="bring">
+  <section class="band band--sunk reveal" id="bring">
     <div class="shell">
       <h2>4 · Bring one more thing</h2>
-      <p>Bring <strong>a small piece of your own data, or one research chore you would like to
-        automate.</strong> A CSV, a folder of PDFs, a script you keep re-running by hand. The
-        practices work far better on a problem you actually care about, and part of each day is
-        deliberately left open for your own material.</p>
+      <p>Have <strong>a small piece of your own data, or one research chore you would like to
+        automate</strong> ready. A CSV, a folder of PDFs, a script you keep re-running by hand.
+        The practices work far better on a problem you actually care about, and part of each day
+        is deliberately left open for your own material.</p>
     </div>
   </section>
 
-  <section class="band" id="trouble">
+  <section class="band reveal" id="trouble">
     <div class="shell">
       <h2>Trouble</h2>
       <dl class="kv">
@@ -150,7 +163,7 @@
           <code>wsl</code> first.</dd>
         <dt>Still stuck</dt>
         <dd>Email <a href="mailto:jiaqishao@u.nus.edu">jiaqishao@u.nus.edu</a> with the exact error
-          text, or arrive fifteen minutes early on day one.</dd>
+          text.</dd>
       </dl>
     </div>
   </section>

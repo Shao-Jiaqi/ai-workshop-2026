@@ -4,22 +4,34 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Materials — AI Tools for Business Research, NUS Business School</title>
-<meta name="description" content="Slides, practice kits, and the setup guide for the NUS Biz PhD Workshop, 4–5 August 2026.">
+<meta name="description" content="The five decks, the three practice kits, the setup guide, and the curated resources from the NUS Biz PhD Workshop, 4–5 August 2026.">
+<script>
+try { var t = localStorage.getItem('ink');
+      if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+</script>
 <link rel="stylesheet" href="assets/style.css">
+<script src="assets/site.js" defer></script>
 </head>
 <body>
 
 <a class="skip" href="#main">Skip to content</a>
+<div class="progress" aria-hidden="true"><i></i></div>
 
 <header class="masthead">
   <div class="shell">
-    <div class="crest">NUS Business School <span>· Dean's PhD and Research Office</span></div>
-    <nav class="nav" aria-label="Sections">
-      <a href="index.html">Overview</a>
-      <a href="index.html#days">The two days</a>
-      <a href="materials.html" aria-current="page">Materials</a>
-      <a href="setup.html">Setup</a>
-    </nav>
+    <a class="lockup" href="index.html" aria-label="NUS Business School — AI Tools for Business Research">
+      <img class="lockup-crest" src="assets/nus_crest.svg" alt="" width="71" height="90">
+      <img class="lockup-word" src="assets/nusbiz_logo.svg" alt="NUS Business School" width="170" height="82">
+    </a>
+    <div class="mast-right">
+      <nav class="nav" aria-label="Sections">
+        <a href="index.html">Overview</a>
+        <a href="index.html#days">The five sessions</a>
+        <a href="materials.html" aria-current="page">Materials</a>
+        <a href="setup.html">Setup</a>
+      </nav>
+      <button type="button" class="inktoggle" hidden>Dark</button>
+    </div>
   </div>
 </header>
 
@@ -29,18 +41,18 @@
     <div class="shell">
       <p class="eyebrow">AI Tools for Business Research <b>·</b> 4 &amp; 5 August 2026</p>
       <h1>Materials</h1>
-      <p class="standfirst">Everything used across the two days: the setup you do beforehand, the
-        five decks, and the three practice kits.</p>
+      <p class="standfirst">Everything used across the two days: the setup you do first, the five
+        decks in running order, the three practice kits, and the resources worth keeping.</p>
     </div>
   </section>
 
-  <section class="band" id="before">
+  <section class="band reveal" id="before">
     <div class="shell">
-      <h2>Before you arrive</h2>
-      <p>Budget 30 to 45 minutes, and finish it before 09:00 on Tuesday. The two days are
-        compressed — we verify your environment together in Session&nbsp;1B rather than building it
-        from scratch. The full walkthrough, including Windows and troubleshooting, is in the
-        <a href="setup.html">setup guide</a>.</p>
+      <h2>Start here</h2>
+      <p>Budget 30 to 45 minutes for the environment. Participants did this before day one so
+        that no teaching hour was lost to installing software; if you are working through the
+        decks on your own, do it first for the same reason. The full walkthrough, including
+        Windows and troubleshooting, is in the <a href="setup.html">setup guide</a>.</p>
 
       <ul class="plain">
         <li><strong>Two accounts</strong> — a
@@ -52,7 +64,7 @@
         <li><strong>Claude Code</strong> — <code>npm install -g @anthropic-ai/claude-code</code>,
           then run <code>claude</code> once and log in.</li>
         <li><strong><a href="https://obsidian.md">Obsidian</a></strong> — free, no account needed,
-          for Session&nbsp;3A.</li>
+          for Session&nbsp;3.</li>
       </ul>
 
       <h3>Then check it works</h3>
@@ -65,59 +77,67 @@
       </figure>
 
       <p>If it does not work, email <a href="mailto:jiaqishao@u.nus.edu">jiaqishao@u.nus.edu</a>
-        with the exact error text, or arrive fifteen minutes early on day one.</p>
+        with the exact error text.</p>
     </div>
   </section>
 
-  <section class="band band--sunk" id="slides">
+  <section class="band band--sunk reveal" id="slides">
     <div class="shell">
       <h2>Slides</h2>
-      <p>Five decks, in running order. Each is the deck used live in the room.</p>
+      <p>Five decks, in running order — each the deck used live in the room. Sessions 1B, 2, 3,
+        and 4 are built with the house Beamer style, so the covers below are also a fair preview
+        of what is inside.</p>
       <div class="table-wrap">
         <table>
           <thead>
             <tr>
               <th scope="col">Session</th>
+              <th scope="col"><span class="visually-hidden">Cover</span></th>
               <th scope="col">Deck</th>
-              <th scope="col">Slides</th>
+              <th scope="col">Pages</th>
               <th scope="col">Size</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <th scope="row">1A</th>
-              <td><a href="materials/slides/1A-evolution-and-risk-wang.pdf">From hand-written code to generative AI, and the risks</a>
-                <span class="who">Shirley Wang · Day 1</span></td>
-              <td class="num">80</td>
-              <td class="num">11 MB</td>
+              <td class="cover"><a href="materials/slides/1A-evolution-and-risk-wang.pdf" tabindex="-1" aria-hidden="true"><img src="assets/covers/1A-evolution-and-risk-wang.png" alt="" loading="lazy" width="420"></a></td>
+              <td><a href="materials/slides/1A-evolution-and-risk-wang.pdf">From ledgers to agents: the long automation of economic research</a>
+                <span class="who">Day 1 morning</span></td>
+              <td class="num">74</td>
+              <td class="num">20 MB</td>
             </tr>
             <tr>
               <th scope="row">1B</th>
-              <td><a href="materials/slides/1B-getting-started-shao.pdf">Getting started: coding basics and agentic systems</a>
-                <span class="who">Jiaqi Shao · Day 1</span></td>
+              <td class="cover"><a href="materials/slides/1B-getting-started-shao.pdf" tabindex="-1" aria-hidden="true"><img src="assets/covers/1B-getting-started-shao.png" alt="" loading="lazy" width="420"></a></td>
+              <td><a href="materials/slides/1B-getting-started-shao.pdf">Getting started with Claude Code: coding basics and agentic systems</a>
+                <span class="who">Day 1 late morning</span></td>
               <td class="num">60</td>
-              <td class="num">244 KB</td>
+              <td class="num">242 KB</td>
             </tr>
             <tr>
               <th scope="row">2</th>
-              <td><a href="materials/slides/2-research-scale-shao.pdf">Claude Code at research scale: vibe coding, worktrees, personalisation</a>
-                <span class="who">Jiaqi Shao · Day 1</span></td>
-              <td class="num">136</td>
-              <td class="num">404 KB</td>
+              <td class="cover"><a href="materials/slides/2-vibe-coding-shao.pdf" tabindex="-1" aria-hidden="true"><img src="assets/covers/2-vibe-coding-shao.png" alt="" loading="lazy" width="420"></a></td>
+              <td><a href="materials/slides/2-vibe-coding-shao.pdf">Vibe coding with Claude Code: two tasks, four rounds, one idea</a>
+                <span class="who">Day 1 afternoon</span></td>
+              <td class="num">112</td>
+              <td class="num">995 KB</td>
             </tr>
             <tr>
-              <th scope="row">3A</th>
-              <td><a href="materials/slides/3A-knowledge-management-shao.pdf">Obsidian + Claude Code: knowledge management and the LLM wiki</a>
-                <span class="who">Jiaqi Shao · Day 2</span></td>
-              <td class="num">67</td>
-              <td class="num">260 KB</td>
+              <th scope="row">3</th>
+              <td class="cover"><a href="materials/slides/3-knowledge-management-shao.pdf" tabindex="-1" aria-hidden="true"><img src="assets/covers/3-knowledge-management-shao.png" alt="" loading="lazy" width="420"></a></td>
+              <td><a href="materials/slides/3-knowledge-management-shao.pdf">Wiki LLM: turn scattered papers into knowledge you can find and check</a>
+                <span class="who">Day 2 morning</span></td>
+              <td class="num">44</td>
+              <td class="num">3.2 MB</td>
             </tr>
             <tr>
-              <th scope="row">3B · 4</th>
-              <td><a href="materials/slides/3B-4-litreview-data-identification-wang.pdf">Literature review, data collection, and identification</a>
-                <span class="who">Shirley Wang · Day 2</span></td>
-              <td class="num">131</td>
-              <td class="num">5.2 MB</td>
+              <th scope="row">4</th>
+              <td class="cover"><a href="materials/slides/4-edgar-to-database-shao.pdf" tabindex="-1" aria-hidden="true"><img src="assets/covers/4-edgar-to-database-shao.png" alt="" loading="lazy" width="420"></a></td>
+              <td><a href="materials/slides/4-edgar-to-database-shao.pdf">From filings to a structured database: sixteen steps, you type all of them</a>
+                <span class="who">Day 2 afternoon</span></td>
+              <td class="num">51</td>
+              <td class="num">232 KB</td>
             </tr>
           </tbody>
         </table>
@@ -125,19 +145,19 @@
     </div>
   </section>
 
-  <section class="band" id="practices">
+  <section class="band reveal" id="practices">
     <div class="shell">
       <h2>Practices</h2>
       <p>Three hands-on blocks, twenty minutes each, all on the same paper. They compound:
         A gets you a verified reading, B turns it into two deliverables, C turns it into knowledge
-        that keeps paying back. Full instructions are in the
-        <a href="materials/practice/README.md">practice guide</a>.</p>
+        that keeps paying back. Session&nbsp;4 is a fourth hands-on block, but it is not a
+        twenty-minute practice — the whole three hours <em>is</em> the build. Full instructions
+        are in the <a href="materials/practice/README.md">practice guide</a>.</p>
 
       <div class="notice">
-        <p><b>The paper is handed out in the room.</b> All three practices run on one
-          field-experiment manuscript that is unpublished, so it is not distributed here. You will
-          get it at the start of Session&nbsp;1B, along with a folder to work in. Everything else
-          you need — the kit, the instructions, the slides — is on this page, so you can read ahead.</p>
+        <p><b>The paper was handed out in the room.</b> All three practices run on one
+          field-experiment manuscript that is unpublished, so it is not distributed here. Everything
+          else you need — the kit, the instructions, the slides — is on this page.</p>
       </div>
 
       <h3>Install the kit first</h3>
@@ -184,20 +204,20 @@
 
       <div class="practice">
         <h3>C · Make the paper compound</h3>
-        <p class="meta">Session 3A <b>·</b> 20 min <b>·</b>
+        <p class="meta">Session 3 <b>·</b> 20 min <b>·</b>
           <a href="materials/practice/C-llm-wiki/PC_practice.pdf">PC_practice.pdf</a></p>
         <p>A talk is used once; a wiki keeps paying back every time you return to the paper. You
           produce a mini LLM wiki — an index, a few pages, a log, then a lint pass. The raw source
           stays read-only; the agent maintains the knowledge pages. Next time you query the wiki
-          instead of re-reading forty pages. The instructor's finished wiki is the answer key —
-          shown in the room after you have built your own.</p>
+          instead of re-reading forty pages.</p>
       </div>
     </div>
   </section>
 
-  <section class="band band--sunk" id="references">
+  <section class="band band--sunk reveal" id="references">
     <div class="shell">
       <h2>Going further</h2>
+
       <h3>Tools and documentation</h3>
       <ul class="plain">
         <li><a href="https://docs.anthropic.com/en/docs/claude-code">Claude Code documentation</a> — Anthropic.</li>
@@ -205,6 +225,21 @@
         <li><a href="https://www.deeplearning.ai/courses/claude-code-a-highly-agentic-coding-assistant">Claude Code: A Highly Agentic Coding Assistant</a> — DeepLearning.AI short course.</li>
         <li><a href="https://help.obsidian.md">Obsidian help</a> and community plugins.</li>
         <li><a href="https://github.com/pedrohcgs/claude-code-my-workflow">pedrohcgs/claude-code-my-workflow</a> — a full academic Claude Code setup, and the lineage of the kit used here.</li>
+        <li><a href="https://karpathy.bearblog.dev/">Andrej Karpathy's notes</a> — including the LLM-wiki gist quoted in Session&nbsp;3, on why maintenance burden kills a knowledge base.</li>
+      </ul>
+
+      <h3>Data sources used or mentioned in the sessions</h3>
+      <ul class="plain">
+        <li><a href="https://www.sec.gov/edgar/search/">SEC EDGAR full-text search</a> — the source
+          behind the Session&nbsp;4 build.</li>
+        <li><a href="https://sraf.nd.edu/">SRAF — Software Repository for Accounting and Finance</a>
+          (Loughran–McDonald) — sentiment and readability word lists, 10-X filing archives.</li>
+        <li><a href="https://www.policyuncertainty.com/">Economic Policy Uncertainty</a> —
+          Baker, Bloom &amp; Davis indices.</li>
+        <li><a href="https://sites.google.com/view/simonoh/">Simon Oh's data page</a> — cleaned
+          research datasets and replication resources.</li>
+        <li><a href="https://www.wrds-www.wharton.upenn.edu/">WRDS</a> — for the standard
+          identifiers the extracted variables are linked to.</li>
       </ul>
 
       <h3>Papers worth reading alongside</h3>

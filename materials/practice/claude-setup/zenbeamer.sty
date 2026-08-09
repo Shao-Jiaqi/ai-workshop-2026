@@ -40,7 +40,7 @@
 \setbeamercolor{normal text}{fg=ink}
 \setbeamercolor{frametitle}{fg=ink}
 \setbeamercolor{structure}{fg=seal}
-\setbeamerfont{frametitle}{series=\bfseries,size=\Large}
+\setbeamerfont{frametitle}{series=\bfseries,size=\LARGE}
 \setbeamertemplate{itemize item}{\color{seal}\raisebox{0.12em}{\rule{0.42em}{0.42em}}}
 \setbeamertemplate{itemize subitem}{\color{stone}\textendash}
 
@@ -120,11 +120,13 @@
   \vspace{2pt}{\color{stone}\rule{0.34\textwidth}{0.4pt}}\par\vspace{-0.2em}%
 }
 
-% ---- Footline: airy ink + seal dot ----------------------------------
+% ---- Footline: airy ink + seal dot + current part title --------------
+\newcommand{\zencurrentpart}{}% set by each deck's \zenpart divider
 \setbeamertemplate{footline}{%
   \leavevmode\hbox to \paperwidth{%
-    \hskip1.5em{\color{inksoft}\zsans\scriptsize\zenfootsession}%
-    \hfil{\color{seal}\scriptsize\textbullet}~{\color{ink}\zsans\scriptsize\insertframenumber}\hskip1.5em}%
+    \hskip1.5em{\color{inksoft}\zsans\footnotesize\zenfootsession}%
+    \hfil{\color{stone}\zsans\footnotesize\addfontfeatures{LetterSpace=8.0}\MakeUppercase{\zencurrentpart}}%
+    \hfil{\color{seal}\footnotesize\textbullet}~{\color{ink}\zsans\footnotesize\insertframenumber}\hskip1.5em}%
   \vskip6pt%
 }
 
@@ -135,7 +137,7 @@
 \setbeamertemplate{background}{%
   \begin{tikzpicture}[remember picture,overlay]
     % course title, top-left
-    \node[anchor=west,inner sep=0,text=inksoft,font=\zsans\scriptsize]
+    \node[anchor=west,inner sep=0,text=inksoft,font=\zsans\footnotesize]
       at ([xshift=0.55cm,yshift=-0.55cm]current page.north west)
       {\addfontfeatures{LetterSpace=11.0}\MakeUppercase{AI Tools for Business Research}};
     % logo lockup, top-right (crest + NUS Business School wordmark, centred)
@@ -144,6 +146,10 @@
       {\includegraphics[height=0.50cm]{\zenbizlogopath}};
     \node[anchor=east,inner sep=0] at ([xshift=-0.20cm]zenbiz.west)
       {\includegraphics[height=0.86cm]{\zencrestpath}};
+    % progress bar: faint track + seal fill, bottom edge of every page
+    \fill[stone!30] (current page.south west) rectangle ([yshift=1.5pt]current page.south east);
+    \fill[seal] (current page.south west) rectangle
+      ([xshift={\paperwidth/\inserttotalframenumber*\insertframenumber},yshift=1.5pt]current page.south west);
   \end{tikzpicture}%
 }
 
