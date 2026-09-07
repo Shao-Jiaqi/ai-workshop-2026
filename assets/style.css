@@ -539,6 +539,17 @@ a code { color: inherit; }
 /* --- people ----------------------------------------------------------- */
 
 .people { display: grid; gap: 2rem; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 1.5rem; }
+.person-photo {
+  display: block;
+  width: 100%; max-width: 13rem;
+  height: auto;              /* the width/height attrs would otherwise fix the box */
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: 50% 22%;   /* faces sit high in a square crop */
+  border: 1px solid var(--stone);
+  margin: 0 0 1.1rem;
+  filter: saturate(.92);      /* settle the photos into the paper palette */
+}
 .person h3 { margin-top: 0; }
 .person .role {
   font-family: var(--sans);
@@ -681,7 +692,8 @@ td.cover a:hover img { transform: translateY(-2px); border-color: var(--seal); }
   .tl-meta { display: flex; gap: .9rem; align-items: baseline; flex-wrap: wrap; }
   .tl-time { font-size: .9rem; }
   .tl-body { border-left: 0; padding-left: 0; }
-  .people { grid-template-columns: 1fr; gap: 1.5rem; }
+  .people { grid-template-columns: 1fr; gap: 2rem; }
+  .person-photo { max-width: 9rem; }
   .split { grid-template-columns: 1fr; gap: 1.5rem; }
   .kv { grid-template-columns: 1fr; }
   .kv dt { padding-bottom: 0; border-top: 1px solid var(--rule); }
